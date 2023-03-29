@@ -5,8 +5,6 @@ const addressInput = document.getElementById('address')! as HTMLInputElement;
 
 const GOOGLE_API_KEY = 'YOUR_API_KEY';
 
-declare const google: any;
-
 type GoogleGeocodingResponse = {
   results: {
     geometry: {
@@ -36,10 +34,9 @@ const searchAddressHandler = (event: Event) => {
       }
       const coordinates = response.data.results.geometry.location;
 
-      const { Map } = google.maps.importLibrary('maps');
-      const map = new Map(document.getElementById('map'), {
+      const map = new google.maps.Map(document.getElementById('map')!, {
         center: coordinates,
-        zoom: 8,
+        zoom: 16,
       });
 
       new google.maps.Marker({
